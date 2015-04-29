@@ -16,8 +16,15 @@
 //
 
 #import "DMManagedObjectObserver.h"
-// <dmclean.filter: lines.sort.uniq>
-#import "DMSafeKVC.h"
+
+
+static NSString *DMSplitKeyPath(NSString *keyPath, __autoreleasing NSString **remainingKeyPath)
+{
+    const NSRange firstPathSeparatorRange = [keyPath rangeOfString:@"." options:NSLiteralSearch];
+    if (remainingKeyPath)
+        *remainingKeyPath = (firstPathSeparatorRange.length ? [keyPath substringFromIndex:NSMaxRange(firstPathSeparatorRange)] : nil);
+    return (firstPathSeparatorRange.length ? [keyPath substringToIndex:firstPathSeparatorRange.location] : keyPath);
+}
 
 
 static NSSet *flattenSubentities(NSEntityDescription *entity)
