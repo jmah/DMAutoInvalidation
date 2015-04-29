@@ -9,13 +9,20 @@
 Pod::Spec.new do |s|
   s.name         = "DMAutoInvalidation"
   s.version      = "1.0.0"
-  s.summary      = "Block-based observers that automatically unregister themselves. Includes observers for NSNotifcation, key-value observing, FSEvents, and Core Data changes."
+  s.summary      = "Block-based observers that automatically unregister themselves."
 
   s.description  = <<-DESC
                    The DMAutoInvalidation class provides behavior to attach an
                    observer object to an owning object. When the owning object
                    is *about to* deallocate, `-invalidate` is sent to the
                    observer object.
+
+                   This library includes pre-built observers for NSNotifcation,
+                   key-value observing, Core Data managed objects (observing
+                   `NSManagedObjectContextObjectsDidChangeNotification` and
+                   testing if an observed managed object's attributes or
+                   relationships have changed), and FSEvents (on Mac desktop
+                   only).
 
                    The purpose of this is to model observer registration as an
                    object, each with an associated block. This removes the need
