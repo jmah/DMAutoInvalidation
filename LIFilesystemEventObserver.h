@@ -15,6 +15,8 @@
 //  limitations under the License.
 //
 
+#if !TARGET_OS_IPHONE
+
 #import <Foundation/Foundation.h>
 #import "DMAutoInvalidation.h"
 
@@ -33,3 +35,5 @@ typedef void(^LIFilesystemEventActionBlock)(id localSelf, LIFilesystemEventObser
 - (void)invalidate;
 
 @end
+
+#endif

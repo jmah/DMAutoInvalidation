@@ -15,6 +15,8 @@
 //  limitations under the License.
 //
 
+#if !TARGET_OS_IPHONE
+
 #import "LIFilesystemEventObserver.h"
 // <dmclean.filter: lines.sort.uniq>
 #import "DMBlockUtilities.h"
@@ -105,3 +107,5 @@ static void callback(ConstFSEventStreamRef streamRef, void *clientCallbackInfo, 
 }
 
 @end
+
+#endif
