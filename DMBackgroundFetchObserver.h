@@ -15,6 +15,8 @@
 //  limitations under the License.
 //
 
+#if TARGET_OS_IPHONE
+
 #import <UIKit/UIKit.h>
 
 
@@ -38,3 +40,5 @@ typedef void (^DMBackgroundFetchActionBlock)(NSDictionary *__nullable notificati
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

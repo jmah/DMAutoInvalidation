@@ -15,6 +15,8 @@
 //  limitations under the License.
 //
 
+#if TARGET_OS_IPHONE
+
 #import "DMBackgroundFetchObserver.h"
 
 #import "DMAutoInvalidation.h"
@@ -164,3 +166,5 @@ static NSHashTable *backgroundFetchObservers;
 }
 
 @end
+
+#endif
