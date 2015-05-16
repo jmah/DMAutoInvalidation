@@ -15,9 +15,9 @@
 //  limitations under the License.
 //
 
-#if !TARGET_OS_IPHONE
-
 #import "DMFilesystemEventObserver.h"
+
+#ifdef __FSEVENTS__
 // <dmclean.filter: lines.sort.uniq>
 #import "DMBlockUtilities.h"
 

@@ -15,9 +15,9 @@
 //  limitations under the License.
 //
 
-#if !TARGET_OS_IPHONE
-
 #import <Foundation/Foundation.h>
+
+#ifdef __FSEVENTS__
 #import "DMAutoInvalidation.h"
 
 @class DMFilesystemEventObserver;
