@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "DMAutoInvalidation"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "Block-based observers that automatically unregister themselves."
 
   s.description  = <<-DESC
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "Jonathon Mah" => "me@JonathonMah.com", "Wil Shipley" => "wjs@mac.com" }
 
-  s.source       = { :git => "https://github.com/jmah/DMAutoInvalidation.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/jmah/DMAutoInvalidation.git", :tag => s.version.to_s }
 
   s.source_files  = "**/*.{h,m}"
   s.exclude_files = "DMBlockUtilities/DMBlockUtilitiesTest", "DMKeyValueObserver/DMKeyValueObserverTest"
