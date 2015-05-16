@@ -1,5 +1,5 @@
 //
-//  LIFilesystemEventObserver.h
+//  DMFilesystemEventObserver.h
 //  DMAutoInvalidation
 //
 //  Created by William Shipley on 2007-01-03.
@@ -20,16 +20,16 @@
 #import <Foundation/Foundation.h>
 #import "DMAutoInvalidation.h"
 
-@class LIFilesystemEventObserver;
+@class DMFilesystemEventObserver;
 // Not all info is passed to block callback, just because no-one needs it (yet).
-typedef void(^LIFilesystemEventActionBlock)(id localSelf, LIFilesystemEventObserver *observer); // ‘localSelf’ param is actually the owner, which is almost always used as ‘self’
+typedef void(^DMFilesystemEventActionBlock)(id localSelf, DMFilesystemEventObserver *observer); // ‘localSelf’ param is actually the owner, which is almost always used as ‘self’
 
 
-@interface LIFilesystemEventObserver : NSObject <DMAutoInvalidation>
+@interface DMFilesystemEventObserver : NSObject <DMAutoInvalidation>
 
-+ (instancetype)observerForDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner action:(LIFilesystemEventActionBlock)actionBlock __attribute__((nonnull(1,2,3)));
++ (instancetype)observerForDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner action:(DMFilesystemEventActionBlock)actionBlock __attribute__((nonnull(1,2,3)));
 
-- (id)initWithDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner since:(FSEventStreamEventId)since latency:(NSTimeInterval)latency action:(LIFilesystemEventActionBlock)actionBlock __attribute__((nonnull(1,2,5)));
+- (id)initWithDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner since:(FSEventStreamEventId)since latency:(NSTimeInterval)latency action:(DMFilesystemEventActionBlock)actionBlock __attribute__((nonnull(1,2,5)));
 
 - (void)fireAction;
 - (void)invalidate;

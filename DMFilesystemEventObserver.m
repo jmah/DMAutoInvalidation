@@ -1,5 +1,5 @@
 //
-//  LIFilesystemEventObserver.m
+//  DMFilesystemEventObserver.m
 //  DMAutoInvalidation
 //
 //  Created by William Shipley on 2007-01-03.
@@ -17,22 +17,22 @@
 
 #if !TARGET_OS_IPHONE
 
-#import "LIFilesystemEventObserver.h"
+#import "DMFilesystemEventObserver.h"
 // <dmclean.filter: lines.sort.uniq>
 #import "DMBlockUtilities.h"
 
 
 static void callback(ConstFSEventStreamRef streamRef, void *clientCallbackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[])
 {
-    LIFilesystemEventObserver *observer = (__bridge id)clientCallbackInfo;
+    DMFilesystemEventObserver *observer = (__bridge id)clientCallbackInfo;
     [observer fireAction];
 }
 
 
-@implementation LIFilesystemEventObserver {
+@implementation DMFilesystemEventObserver {
     BOOL _invalidated;
     FSEventStreamRef _eventStreamRef;
-    LIFilesystemEventActionBlock _actionBlock;
+    DMFilesystemEventActionBlock _actionBlock;
     __unsafe_unretained id _unsafeOwner;
 }
 
@@ -65,13 +65,13 @@ static void callback(ConstFSEventStreamRef streamRef, void *clientCallbackInfo, 
 
 #pragma mark API
 
-+ (instancetype)observerForDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner action:(LIFilesystemEventActionBlock)actionBlock;
++ (instancetype)observerForDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner action:(DMFilesystemEventActionBlock)actionBlock;
 {
 #define DEFAULT_LATENCY (2.0)
     return [[self alloc] initWithDirectoryPaths:paths attachedToOwner:owner since:kFSEventStreamEventIdSinceNow latency:DEFAULT_LATENCY action:actionBlock];
 }
 
-- (id)initWithDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner since:(FSEventStreamEventId)since latency:(NSTimeInterval)latency action:(LIFilesystemEventActionBlock)actionBlock;
+- (id)initWithDirectoryPaths:(NSArray *)paths attachedToOwner:(id)owner since:(FSEventStreamEventId)since latency:(NSTimeInterval)latency action:(DMFilesystemEventActionBlock)actionBlock;
 {
     NSParameterAssert(paths && owner && actionBlock);
     if (!(self = [super init]))
@@ -102,7 +102,7 @@ static void callback(ConstFSEventStreamRef streamRef, void *clientCallbackInfo, 
         return;
     
     // If our owner has deallocated, we should be invalidated at this point. Since we're not, our owner must still be alive.
-    LIFilesystemEventActionBlock actionBlock = [_actionBlock copy]; // Use a local reference, as the actionBock could call -invalidate on us
+    DMFilesystemEventActionBlock actionBlock = [_actionBlock copy]; // Use a local reference, as the actionBock could call -invalidate on us
     actionBlock(_unsafeOwner, self);
 }
 
